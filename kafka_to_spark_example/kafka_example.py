@@ -10,9 +10,8 @@ producer = KafkaProducer(bootstrap_servers='localhost:9092',
 def produce():
     with open('/Users/chris/pyprojects/Kafka3-Data/archive/small_listen.json', 'r') as file:
         for line in file:
-            json.loads(line)
-            producer.send(topic='listen-activity', value=line)
-            print(str(line))
+            data = json.loads(line)
+            producer.send(topic='listen-activity', value=data)
             time.sleep(1)
         producer.close()
 
